@@ -26,14 +26,17 @@ class vendingMachine {
   queryInventory(itemName){
     // console.log(itemName);
     if(typeof itemName === 'string' && itemName){
-      return this.vmItems.reduce((acc, curr, index, array) => {
-          if(curr.item === itemName){
-            acc = array[index]
-          }
-          return acc
-      },{});
+      const item = this.vmItems.filter((item) => {
+        return item.item == itemName
+      });
+      if(item.length > 0){
+        return item[0]
+      }else{
+        throw new Error('No such item exist');
+      }
+
     }
-    throw new Error('Pleas enter a valid vending machine item name');
+    throw new Error('Please enter a valid vending machine item name');
   }
 }
 module.exports = vendingMachine;
