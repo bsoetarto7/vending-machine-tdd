@@ -22,17 +22,29 @@ class vendingMachine {
   }
 
   refillInventory(){
-    this.vmItems.forEach((item) => {
+    let items = this.vmItems
+    items.forEach((item) => {
       item.quantity = 10
     })
-    return this.vmItems
+    return items
   }
 
   refillChange(){
-    this.vmChange.forEach((change) => {
+    let moneyChange = this.vmChange
+    moneyChange.forEach((change) => {
       change.quantity = 20
     })
-    return this.vmChange
+    return moneyChange
+  }
+
+  buyItem(payment){
+    if(typeof payment === 'number' && payment > 0){
+      let items = this.vmItems.filter((items) => {
+        return items.price <= payment
+      })
+      return items
+    }
+    return []
   }
 }
 module.exports = vendingMachine;

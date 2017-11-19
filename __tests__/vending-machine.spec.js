@@ -55,9 +55,22 @@ describe('Vending Machine', () => {
       test.subject = new vendingMachine();
     })
     describe('When payment is made', () => {
-      describe('When $1.50 is received by vending machine', () => {
+      describe('When $1.40 is received by vending machine', () => {
         it('Should return the items base on payment', () => {
-          const result = test.subject.buyItem(1.50);
+          expectedResult = [
+            {
+              "item": "pepsi",
+              "price": 1.20,
+              "quantity": 10
+            },
+            {
+              "item": "coca-cola",
+              "price": 1.30,
+              "quantity": 10
+            }
+          ]
+          const result = test.subject.buyItem(1.40);
+          expect(result).toEqual(expect.arrayContaining(expectedResult));
         })
       })
       describe('When $2.00 is received by vending machine', () => {
@@ -69,6 +82,7 @@ describe('Vending Machine', () => {
     describe('When no payment is made', () => {
       it('Should return no item', () => {
         const result = test.subject.buyItem();
+        expect(result).toEqual(expect.arrayContaining([]));
       })
     })
   })
