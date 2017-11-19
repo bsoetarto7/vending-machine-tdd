@@ -9,7 +9,7 @@ describe('Vending Machine', () => {
     describe('When inventory exists', () => {
       it('Should tell me the inventory data', () => {
         const result = test.subject.queryInventory('pepsi');
-        expect(result.item).toBe('pepsi')
+        expect(result).toEqual(expect.arrayContaining([expect.objectContaining({item: 'pepsi'})]))
       })
     })
     describe('When inventory does not exist', () => {
@@ -28,6 +28,9 @@ describe('Vending Machine', () => {
     describe('When refilling inventory', () => {
       it('It should fill up each item quantity back to 10', () => {
         const result = test.subject.refillInventory();
+        for (let i = 0; i < result.length; i++){
+          expect(result[i]).toEqual(expect.objectContaining({quantity: 10}));
+        }
       })
     })
   })
