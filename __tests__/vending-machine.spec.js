@@ -8,7 +8,7 @@ describe('Vending Machine', () => {
     describe('When inventory exists', () => {
       it('Should tell me the inventory data', () => {
         const result = test.subject.queryInventory('pepsi');
-        expect(result).toBe('pepsi')
+        expect(result.item).toBe('pepsi')
       })
     })
   })
