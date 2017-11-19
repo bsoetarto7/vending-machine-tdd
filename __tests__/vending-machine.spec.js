@@ -49,4 +49,28 @@ describe('Vending Machine', () => {
       })
     })
   })
+
+  describe('Query item base on payment received', () => {
+    beforeEach(()=>{
+      test.subject = new vendingMachine();
+    })
+    describe('When payment is made', () => {
+      describe('When $1.50 is received by vending machine', () => {
+        it('Should return the items base on payment', () => {
+          const result = test.subject.buyItem(1.50);
+        })
+      })
+      describe('When $2.00 is received by vending machine', () => {
+        it('Should return the items base on payment', () => {
+          const result = test.subject.buyItem(2.00);
+        })
+      })
+    })
+    describe('When no payment is made', () => {
+      it('Should return no item', () => {
+        const result = test.subject.buyItem();
+      })
+    })
+  })
+
 })
