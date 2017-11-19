@@ -21,15 +21,30 @@ describe('Vending Machine', () => {
       })
     })
   })
+
   describe('Refilling inventory', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
     describe('When refilling inventory', () => {
-      it('It should fill up each item quantity back to 10', () => {
+      it('Should fill up each item quantity back to 10', () => {
         const result = test.subject.refillInventory();
         for (let i = 0; i < result.length; i++){
           expect(result[i]).toEqual(expect.objectContaining({quantity: 10}));
+        }
+      })
+    })
+  })
+
+  describe('Refilling vending machine change', () => {
+    beforeEach(()=>{
+      test.subject = new vendingMachine();
+    })
+    describe('When refilling refilling vending machine change', () => {
+      it('Should fill each denomination of coins quantity back to 20', () => {
+        const result = test.subject.refillChange();
+        for (let i = 0; i < result.length; i++){
+          expect(result[i]).toEqual(expect.objectContaining({quantity: 20}));
         }
       })
     })

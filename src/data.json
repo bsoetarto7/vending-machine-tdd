@@ -1,0 +1,51 @@
+{
+  "items": [
+    {
+      "item": "pepsi",
+      "price": 1.20,
+      "quantity": 4
+    },
+    {
+      "item": "coca-cola",
+      "price": 1.30,
+      "quantity": 6
+    },
+    {
+      "item": "dasani water",
+      "price": 2.00,
+      "quantity": 5
+    },
+    {
+      "item": "root beer",
+      "price": 1.50,
+      "quantity": 5
+    }
+  ],
+  "change":[
+    {
+      "denomination": "nickel",
+      "value": 0.05,
+      "quantity": 5
+    },
+    {
+      "denomination": "dime",
+      "value": 0.10,
+      "quantity": 9
+    },
+    {
+      "denomination": "quarter",
+      "value": 0.25,
+      "quantity": 10
+    },
+    {
+      "denomination": "loonie",
+      "value": 1.00,
+      "quantity": 11
+    },
+    {
+      "denomination": "toonie",
+      "value": 2.00,
+      "quantity": 18
+    }
+  ]
+}

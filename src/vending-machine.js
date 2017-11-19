@@ -1,27 +1,9 @@
+var data = require('./data')
+
 class vendingMachine {
   constructor(){
-    this.vmItems =[
-      {
-        item: 'pepsi',
-        price: '$1.20',
-        quantity: 4
-      },
-      {
-        item: 'coca-cola',
-        price: '$1.30',
-        quantity: 6
-      },
-      {
-        item: 'dasani water',
-        price: '$2.00',
-        quantity: 5
-      },
-      {
-        item: 'root beer',
-        price: '$1.50',
-        quantity: 5
-      }
-    ]
+    this.vmItems = data.items
+    this.vmChange = data.change
   }
   queryInventory(itemName){
     // console.log(itemName);
@@ -44,6 +26,13 @@ class vendingMachine {
       item.quantity = 10
     })
     return this.vmItems
+  }
+
+  refillChange(){
+    this.vmChange.forEach((change) => {
+      change.quantity = 20
+    })
+    return this.vmChange
   }
 }
 module.exports = vendingMachine;
