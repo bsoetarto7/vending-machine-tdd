@@ -46,5 +46,30 @@ class vendingMachine {
     }
     return []
   }
+
+  payForItem(itemName, payment){
+    if(typeof itemName === 'string' && itemName && typeof payment === 'number' && payment > 0){
+      let item = this.vmItems.reduce((acc, curr) => {
+        if(curr.item === itemName){
+          acc = curr
+        }
+        return acc
+      },{})
+      let change = (payment - item.price).toFixed(2);
+      let changeToCoins = [];
+      for(let i = 0; i<this.vmChange.length; i++){
+        if(this.vmChange[i].value <= change){
+          change -= this.vmChange[i].value;
+          changeToCoins.push(this.vmChange[i])
+          i = 0
+        }
+      }
+      return {
+        item: [item],
+        change: changeToCoins
+      }
+    }
+  }
 }
+
 module.exports = vendingMachine;

@@ -115,7 +115,7 @@ describe('Vending Machine', () => {
           {
             "item": "pepsi",
             "price": 1.20,
-            "quantity": 9
+            "quantity": 10
           }
         ]
         const result = test.subject.payForItem('pepsi', 1.40);
@@ -126,12 +126,12 @@ describe('Vending Machine', () => {
           {
             "denomination": "dime",
             "value": 0.10,
-            "quantity": 19
+            "quantity": 20
           },
           {
             "denomination": "dime",
             "value": 0.10,
-            "quantity": 18
+            "quantity": 20
           }
         ]
         const result = test.subject.payForItem('pepsi', 1.40);
