@@ -50,7 +50,7 @@ describe('Vending Machine', () => {
     })
   })
 
-  describe('Query item base on payment received', () => {
+  describe('Query items base on payment received', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
@@ -73,9 +73,27 @@ describe('Vending Machine', () => {
           expect(result).toEqual(expect.arrayContaining(expectedResult));
         })
       })
-      describe('When $2.00 is received by vending machine', () => {
+      describe('When $1.90 is received by vending machine', () => {
         it('Should return the items base on payment', () => {
-          const result = test.subject.buyItem(2.00);
+          expectedResult = [
+            {
+              "item": "pepsi",
+              "price": 1.20,
+              "quantity": 10
+            },
+            {
+              "item": "coca-cola",
+              "price": 1.30,
+              "quantity": 10
+            },
+            {
+              "item": "root beer",
+              "price": 1.50,
+              "quantity": 10
+            }
+          ]
+          const result = test.subject.buyItem(1.90);
+          expect(result).toEqual(expect.arrayContaining(expectedResult));
         })
       })
     })
@@ -84,6 +102,42 @@ describe('Vending Machine', () => {
         const result = test.subject.buyItem();
         expect(result).toEqual(expect.arrayContaining([]));
       })
+    })
+  })
+
+  describe('Query specific item selected and get change', () => {
+    beforeEach(()=>{
+      test.subject = new vendingMachine();
+    })
+    describe('When $1.40 is paid and pepsi is the selected item', () => {
+      it('Should return an array containing object of pepsi', () => {
+        expectedResult = [
+          {
+            "item": "pepsi",
+            "price": 1.20,
+            "quantity": 9
+          }
+        ]
+        const result = test.subject.payForItem('pepsi', 1.40);
+        expect(result.item).toEqual(expect.arrayContaining(expectedResult))
+      })
+      it('Should return an array of object changes', () => {
+        expectedResult = [
+          {
+            "denomination": "dime",
+            "value": 0.10,
+            "quantity": 19
+          },
+          {
+            "denomination": "dime",
+            "value": 0.10,
+            "quantity": 18
+          }
+        ]
+        const result = test.subject.payForItem('pepsi', 1.40);
+        expect(result.change).toEqual(expect.arrayContaining(expectedResult))
+      })
+
     })
   })
 
