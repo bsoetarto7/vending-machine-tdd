@@ -2,7 +2,7 @@ const vendingMachine = require('../src/vending-machine');
 
 describe('Vending Machine', () => {
   
-  describe('Querying for inventory', () => {
+  describe('Printing inventory', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
@@ -36,11 +36,11 @@ describe('Vending Machine', () => {
     })
   })
 
-  describe('Refilling vending machine change', () => {
+  describe('Re-supplying change', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
-    describe('When refilling refilling vending machine change', () => {
+    describe('When re-supplying vending machine coins for change', () => {
       it('Should fill each denomination of coins quantity back to 20', () => {
         const result = test.subject.refillChange();
         for (let i = 0; i < result.length; i++){
@@ -50,7 +50,7 @@ describe('Vending Machine', () => {
     })
   })
 
-  describe('Query items base on payment received', () => {
+  describe('Dispensing inventory based on payment', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
@@ -105,7 +105,7 @@ describe('Vending Machine', () => {
     })
   })
 
-  describe('Query specific item selected and get change', () => {
+  describe('Returning change & item selected', () => {
     beforeEach(()=>{
       test.subject = new vendingMachine();
     })
@@ -115,13 +115,13 @@ describe('Vending Machine', () => {
           {
             "item": "pepsi",
             "price": 1.20,
-            "quantity": 10
+            "quantity": 9
           }
         ]
         const result = test.subject.payForItem('pepsi', 1.40);
         expect(result.item).toEqual(expect.arrayContaining(expectedResult))
       })
-      it('Should return an array of object changes', () => {
+      it('Should return an array of object that contains the coins for change', () => {
         expectedResult = [
           {
             "denomination": "dime",

@@ -22,19 +22,17 @@ class vendingMachine {
   }
 
   refillInventory(){
-    let items = this.vmItems
-    items.forEach((item) => {
+    this.vmItems.forEach((item) => {
       item.quantity = 10
     })
-    return items
+    return this.vmItems
   }
 
   refillChange(){
-    let moneyChange = this.vmChange
-    moneyChange.forEach((change) => {
+    this.vmChange.forEach((change) => {
       change.quantity = 20
     })
-    return moneyChange
+    return this.vmChange
   }
 
   buyItem(payment){
@@ -49,13 +47,14 @@ class vendingMachine {
 
   payForItem(itemName, payment){
     if(typeof itemName === 'string' && itemName && typeof payment === 'number' && payment > 0){
-      let item = this.vmItems.reduce((acc, curr) => {
-        if(curr.item === itemName){
-          acc = curr
+      let itemsSelected = []
+      this.vmItems.forEach((item) => {
+        if(item.item === itemName){
+          item.quantity -= 1;
+          itemsSelected.push(item);
         }
-        return acc
-      },{})
-      let change = (payment - item.price).toFixed(2);
+      })
+      let change = (payment - itemsSelected[0].price).toFixed(2);
       let changeToCoins = [];
       for(let i = 0; i<this.vmChange.length; i++){
         if(this.vmChange[i].value <= change){
@@ -65,7 +64,7 @@ class vendingMachine {
         }
       }
       return {
-        item: [item],
+        item: itemsSelected,
         change: changeToCoins
       }
     }
