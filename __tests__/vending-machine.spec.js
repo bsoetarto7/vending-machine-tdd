@@ -61,12 +61,12 @@ describe('Vending Machine', () => {
             {
               "item": "pepsi",
               "price": 1.20,
-              "quantity": 10
+              "quantity": 9
             },
             {
               "item": "coca-cola",
               "price": 1.30,
-              "quantity": 10
+              "quantity": 9
             }
           ]
           const result = test.subject.buyItem(1.40);
@@ -79,17 +79,17 @@ describe('Vending Machine', () => {
             {
               "item": "pepsi",
               "price": 1.20,
-              "quantity": 10
+              "quantity": 8
             },
             {
               "item": "coca-cola",
               "price": 1.30,
-              "quantity": 10
+              "quantity": 8
             },
             {
               "item": "root beer",
               "price": 1.50,
-              "quantity": 10
+              "quantity": 9
             }
           ]
           const result = test.subject.buyItem(1.90);
@@ -115,7 +115,7 @@ describe('Vending Machine', () => {
           {
             "item": "pepsi",
             "price": 1.20,
-            "quantity": 9
+            "quantity": 7
           }
         ]
         const result = test.subject.payForItem('pepsi', 1.40);
@@ -126,12 +126,12 @@ describe('Vending Machine', () => {
           {
             "denomination": "dime",
             "value": 0.10,
-            "quantity": 20
+            "quantity": 16
           },
           {
             "denomination": "dime",
             "value": 0.10,
-            "quantity": 20
+            "quantity": 16
           }
         ]
         const result = test.subject.payForItem('pepsi', 1.40);

@@ -37,8 +37,11 @@ class vendingMachine {
 
   buyItem(payment){
     if(typeof payment === 'number' && payment > 0){
-      let items = this.vmItems.filter((items) => {
-        return items.price <= payment
+      let items = this.vmItems.filter((items, index) => {
+        if(items.price <= payment){
+          this.vmItems[index].quantity -= 1
+          return items.price <= payment
+        }
       })
       return items
     }
@@ -59,6 +62,7 @@ class vendingMachine {
       for(let i = 0; i<this.vmChange.length; i++){
         if(this.vmChange[i].value <= change){
           change -= this.vmChange[i].value;
+          this.vmChange[i].quantity -= 1
           changeToCoins.push(this.vmChange[i])
           i = 0
         }
